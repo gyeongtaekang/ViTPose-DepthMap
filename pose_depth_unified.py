@@ -27,7 +27,7 @@ if vit_pose_path not in sys.path:
 
 # 이제 ViTPose 모듈을 불러올 수 있음
 from models.model import ViTPose
-from utils.visualization import draw_points_and_skeleton, joints_dict
+from utils.visualization import draw_points_and_skeleton, extended_joints_dict
 from utils.top_down_eval import keypoints_from_heatmaps
 
 # Depth-Anything 관련 import
@@ -85,7 +85,7 @@ def run_pose_inference(image_path, pose_model, device, img_size, save_result=Tru
         pose_draw_img = draw_points_and_skeleton(
             pose_draw_img,
             pts,
-            joints_dict()['coco']['skeleton'],
+            extended_joints_dict()['coco']['skeleton'],
             person_index=pid,
             points_color_palette='gist_rainbow',
             skeleton_color_palette='jet',
@@ -161,7 +161,7 @@ def overlay_pose_on_depth(depth_img, points):
         overlay_img = draw_points_and_skeleton(
             overlay_img,
             pts,
-            joints_dict()['coco']['skeleton'],
+            extended_joints_dict()['coco']['skeleton'],
             person_index=pid,
             points_color_palette='gist_rainbow',   # 원하는 팔레트로 변경 가능
             skeleton_color_palette='jet',          # 원하는 팔레트로 변경 가능
